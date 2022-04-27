@@ -14,6 +14,7 @@ module.exports = {
 
         let decodedToken = jwt.verify(token, process.env.AUTH_SECRET);
         // console.log(decodedToken.id);
+        req.userId = decodedToken.id;
 
         if (!token || !decodedToken.id) {
           return res.status(401).json({ error: 'Invalid token' });
@@ -31,6 +32,37 @@ module.exports = {
     } catch (error) {
       res.status(401).json({ error: 'Invalid token' })
     }
+  },
 
-  }
+  async verifyAdmin(req, res, next) {
+    try {
+      let user = await employee.findOne({ where: { id: req.userId } });
+      console.log(user.TypeEmployeeId);
+      if (user.TypeEmployeeId != 1) {
+        return res.status(401).json({ error: 'access denied' });
+      }
+      next();
+    } catch (error) {
+      res.status(401).json({ error: 'Invalid token' })
+    }
+  },
+
+  async verifyReceptionist(req, res, next) {
+    try {
+      let user = await employee.findOne({ where: { id: req.userId } });
+      console.log(user.TypeEmployeeId);
+      if (user.TypeEmployeeId != 2) {
+        return res.status(401).json({ error: 'access denied' });
+      }
+      next();
+    } catch (error) {
+      res.status(401).json({ error: 'Invalid token' })
+    }
+  },
+
+  async verifyCleaner(req, res, next) {
+
+  },
+
+
 }

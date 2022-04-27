@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { verifyToken } = require('../middleware/auth');
+const { verifyToken, verifyAdmin, verifyReceptionist } = require('../middleware/auth');
 
 const {
   getRoom,
@@ -18,10 +18,10 @@ const {
 
 
 router.get('/', getRoom);
-router.post('/', verifyToken, validateCreateRoom, createRoom);
+router.post('/', [verifyToken, verifyAdmin], validateCreateRoom, createRoom);
 router.get('/:id', verifyToken, validateConsultRoom, getRoomById);
-router.put('/:id', validateUpdateRoom, updateRoom);
-router.delete('/:id', validateDeleteRoom, deleteRoom);
+router.put('/:id', [verifyToken, verifyAdmin], validateUpdateRoom, updateRoom);
+router.delete('/:id', [verifyToken, verifyAdmin], validateDeleteRoom, deleteRoom);
 
 
 
