@@ -19,6 +19,16 @@ npx sequelize-cli init
 
 ---
 
+CREATE DATABASE
+sequelize-cli db:create
+
+DELETE DATABASE
+sequelize-cli db:drop
+
+---
+
+---
+
 CREATE MODELS
 
 ```sh
