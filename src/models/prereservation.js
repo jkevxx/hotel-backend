@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      PreReservation.belongsTo(models.Customer, { as: 'Customer' });
+      // PreReservation.belongsTo(models.Customer, { as: 'Customer' });
       PreReservation.belongsTo(models.PaymentMethod, { as: 'PaymentMethod' });
       PreReservation.belongsTo(models.Room, { as: 'Room' });
 
@@ -20,12 +20,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PreReservation.init({
+    name: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    cellphone: DataTypes.STRING,
+    email: DataTypes.STRING,
     dateReservation: DataTypes.DATE,
-    checking: DataTypes.DATE,
+    checkin: DataTypes.DATE,
     checkout: DataTypes.DATE,
     numRooms: DataTypes.INTEGER,
     totalPayment: DataTypes.FLOAT,
-    CustomerId: DataTypes.INTEGER,
     PaymentMethodId: DataTypes.INTEGER,
     RoomId: DataTypes.INTEGER
   }, {

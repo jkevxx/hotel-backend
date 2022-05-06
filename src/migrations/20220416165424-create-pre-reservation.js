@@ -8,10 +8,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING(60)
+      },
+      lastName: {
+        type: Sequelize.STRING(60)
+      },
+      cellphone: {
+        type: Sequelize.STRING(10),
+      },
+      email: {
+        type: Sequelize.STRING(60),
+      },
       dateReservation: {
         type: Sequelize.DATE
       },
-      checking: {
+      checkin: {
         type: Sequelize.DATE
       },
       checkout: {
@@ -22,15 +34,6 @@ module.exports = {
       },
       totalPayment: {
         type: Sequelize.FLOAT
-      },
-      CustomerId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Customers',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
       },
       PaymentMethodId: {
         type: Sequelize.INTEGER,
