@@ -3,7 +3,7 @@ const typeroom = require('../models').TypeRoom
 module.exports = {
   async getTypeRoom(req, res, next) {
     try {
-      let data = await typeroom.findAll({});
+      let data = await typeroom.findAll({ include: ['Photo'] });
       return res.json(data);
     } catch (error) {
       next(error);
@@ -28,7 +28,7 @@ module.exports = {
   async getTypeRoomById(req, res, next) {
     let { id } = req.params;
     try {
-      let data = await typeroom.findOne({ where: { id: id } });
+      let data = await typeroom.findOne({ include: ['Photo'], where: { id: id } });
       return res.json(data);
     } catch (error) {
       next(error);

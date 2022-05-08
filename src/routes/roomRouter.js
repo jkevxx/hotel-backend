@@ -7,6 +7,7 @@ const {
   getRoom,
   createRoom,
   getRoomById,
+  getRoomByTypeRoom,
   updateRoom,
   deleteRoom } = require('../controllers/roomController');
 
@@ -18,6 +19,7 @@ const {
 
 
 router.get('/', getRoom);
+// router.get('/:TypeRoomId', getRoomByTypeRoom);
 router.post('/', [verifyToken, verifyAdmin], validateCreateRoom, createRoom);
 router.get('/:id', verifyToken, validateConsultRoom, getRoomById);
 router.put('/:id', [verifyToken, verifyAdmin], validateUpdateRoom, updateRoom);

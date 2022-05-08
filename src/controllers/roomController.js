@@ -36,6 +36,16 @@ module.exports = {
     }
   },
 
+  async getRoomByTypeRoom(req, res, next) {
+    let { TypeRoomId } = req.params;
+    try {
+      let data = await room.findAll({ where: { TypeRoomId } });
+      return res.json(data);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async updateRoom(req, res, next) {
     let { id } = req.params;
     let { name, available, TypeRoomId, FloorId } = req.body;
