@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       // PreReservation.belongsTo(models.Customer, { as: 'Customer' });
       PreReservation.belongsTo(models.PaymentMethod, { as: 'PaymentMethod' });
-      PreReservation.belongsTo(models.Room, { as: 'Room' });
+      // PreReservation.belongsTo(models.Room, { as: 'Room' });
 
       PreReservation.hasMany(models.Reservation, { as: 'Reservation', foreignKey: 'PreReservationId' });
       PreReservation.hasMany(models.Consumption, { as: 'Consumption', foreignKey: 'PreReservationId' });
@@ -29,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     checkout: DataTypes.DATE,
     numRooms: DataTypes.INTEGER,
     totalPayment: DataTypes.FLOAT,
-    PaymentMethodId: DataTypes.INTEGER,
-    RoomId: DataTypes.INTEGER
+    PaymentMethodId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'PreReservation',

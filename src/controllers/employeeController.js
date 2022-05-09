@@ -54,7 +54,7 @@ module.exports = {
       let user = await employee.findOne({ where: { username } });
 
       if (!user) {
-        return res.status(401).json({ msg: "Invalid username or password" });
+        return res.json({ msg: "Invalid username or password" });
       } else {
         if (bcrypt.compareSync(password, user.password)) {
           const userForToken = {
@@ -70,7 +70,7 @@ module.exports = {
           });
 
         } else {
-          return res.status(401).json({ msg: 'Invalid username or password' });
+          return res.json({ msg: 'Invalid username or password' });
         }
       }
     } catch (error) {
