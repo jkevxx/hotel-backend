@@ -9,6 +9,7 @@ const typeRoomRouter = require('./typeRoomRouter');
 const employeeRouter = require('./employeeRouter');
 const prereservationRouter = require('./prereservationRouter');
 const photoRouter = require('./photoRouter');
+const reservationRouter = require('./reservationRouter');
 
 
 function routerApi(app) {
@@ -18,6 +19,7 @@ function routerApi(app) {
   router.use('/', employeeRouter);
   router.use('/prereservation', prereservationRouter);
   router.use('/photo', photoRouter);
+  router.use('/reservation', reservationRouter);
 }
 
 
